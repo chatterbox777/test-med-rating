@@ -1,7 +1,8 @@
-const catalogue = document.querySelector(".catalog__name");
+const catalogue = document.querySelector(".catalog");
+const catalogueUsers = document.querySelector(".catalog__users");
 let userNameLi = []; // здесь после маппинга полученного объекта с users будет храниться каждый ul c именем user
 
-catalogue.addEventListener("click", userResponse);
+catalogueUsers.addEventListener("click", userResponse);
 
 // эта функция возвращает массив юзеров
 function getUsers() {
@@ -22,7 +23,12 @@ function getPhotos(id) {
 const mapAlbums = (album, userItem) => {
   const albums = document.createElement("ul");
   albums.innerHTML = album.title;
+  albums.classList.add("catalog__item");
   userItem.appendChild(albums);
+  const onSubscribeUsers = () => {
+    albums.classList.toggle("active");
+  };
+  userItem.addEventListener("click", onSubscribeUsers);
 };
 
 const mapListUsers = async ({ id, name }) => {
@@ -31,7 +37,9 @@ const mapListUsers = async ({ id, name }) => {
   const userName = document.createElement("p");
   userName.innerHTML = name;
   userItem.appendChild(userName);
+  userItem.classList.add("catalog__user");
   catalogue.appendChild(userItem);
+
   userAlbums.forEach((album) => mapAlbums(album, userItem));
 };
 

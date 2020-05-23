@@ -2,3 +2,14 @@
   display: flex;
   justify-content: space-evenly;
 }
+
+.catalog__item {
+  display: none;
+}
+.active {
+  display: block;
+}
+.catalog__user {
+  list-style: none;
+  margin-left: 20px;
+}
