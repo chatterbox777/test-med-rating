@@ -1,6 +1,7 @@
 .container {
+  width: 1024px;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
 }
 
 .catalog__item {
@@ -12,4 +13,7 @@
 .catalog__user {
   list-style: none;
   margin-left: 20px;
+}
+.catalog__user:hover {
+  cursor: pointer;
 }
