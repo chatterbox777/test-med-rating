@@ -37,6 +37,8 @@ const mapAlbums = (album, userItem) => {
   albums.innerHTML = album.title;
   albums.classList.add("catalog__item");
   userItem.appendChild(albums);
+  const photoBlock = document.createElement("ul");
+  albums.appendChild(photoBlock);
   const onSubscribeUsers = () => {
     albums.classList.toggle("active");
   };
@@ -44,25 +46,29 @@ const mapAlbums = (album, userItem) => {
   userItem.addEventListener("click", onSubscribeUsers);
   albums.addEventListener("click", async (e) => {
     e.stopPropagation();
-    const photos = await getPhotos(album.id); // получаем фото с id album
-    const photoBlock = document.createElement("ul");
-    albums.appendChild(photoBlock);
-    photoBlock.classList.add("catalog__photo__item");
-
-    photos.forEach((photo) => {
-      const photoWrapper = document.createElement("li");
-      photoWrapper.classList.add("albums__image");
-      const favouriteButton = document.createElement("button");
-      favouriteButton.classList.add("button");
-      photoWrapper.dataset.photoId = photo.id;
-      const image = document.createElement("img");
-      photoBlock.appendChild(photoWrapper);
-      photoWrapper.appendChild(favouriteButton);
-      photoWrapper.appendChild(image);
-      image.src = photo.thumbnailUrl;
-      image.title = photo.title;
-      photoBlock.classList.remove("catalog__photo__item");
-    });
+    if (!photoBlock.classList.contains("active")) {
+      const photos = await getPhotos(album.id); // получаем фото с id album
+      photos.forEach((photo) => {
+        const photoWrapper = document.createElement("li");
+        photoWrapper.classList.add("albums__image");
+        const favouriteButton = document.createElement("button");
+        favouriteButton.classList.add("button");
+        photoWrapper.dataset.photoId = photo.id;
+        const image = document.createElement("img");
+        photoBlock.appendChild(photoWrapper);
+        photoWrapper.appendChild(favouriteButton);
+        photoWrapper.appendChild(image);
+        image.src = photo.thumbnailUrl;
+        image.title = photo.title;
+      });
+      if (photoBlock.classList.contains("non_active")) {
+        photoBlock.classList.remove("non_active");
+      }
+      photoBlock.classList.add("active");
+    } else {
+      photoBlock.classList.remove("active");
+      photoBlock.classList.add("non_active");
+    }
   });
 };
 

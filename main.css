@@ -33,9 +33,7 @@ body {
   border: 1px solid #323232;
   margin: 0 0 4px 0;
 }
-.catalog__photo__item {
-  display: none;
-}
+
 .active {
   display: block;
 }
