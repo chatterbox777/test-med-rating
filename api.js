@@ -24,6 +24,14 @@ function getPhotos(id) {
 
 //};
 
+const mapPhotos = (photo, albums) => {
+  const picture = document.createElement("img");
+  picture.src = photo.url;
+  picture.alt = photo.title;
+  albums.appendChild(picture);
+  albums.addEventListener("click");
+};
+
 const mapAlbums = (album, userItem) => {
   const albums = document.createElement("ul"); // нужно зааппендить в albums каждую picture
   albums.innerHTML = album.title;
@@ -32,12 +40,24 @@ const mapAlbums = (album, userItem) => {
   const onSubscribeUsers = () => {
     albums.classList.toggle("active");
   };
-  const onPhotoSubscribe = async () => {
-    return await getPhotos(album.id);
-  };
 
   userItem.addEventListener("click", onSubscribeUsers);
-  albums.addEventListener("click", onPhotoSubscribe); // получаем фото с id album
+  albums.addEventListener("click", async () => {
+    const photos = await getPhotos(album.id); // получаем фото с id album
+    const photoBlock = document.createElement("ul");
+    albums.appendChild(photoBlock);
+    photos.forEach((photo) => {
+      const photoWrapper = document.createElement("li");
+      const favouriteButton = document.createElement("button");
+      photoWrapper.dataset.photoId = photo.id;
+      const image = document.createElement("img");
+      photoBlock.appendChild(photoWrapper);
+      photoWrapper.appendChild(favouriteButton);
+      photoWrapper.appendChild(image);
+      image.src = photo.thumbnailUrl;
+      image.title = photo.title;
+    });
+  });
 };
 
 const mapListUsers = async ({ id, name }) => {
