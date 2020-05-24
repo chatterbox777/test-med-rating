@@ -1,10 +1,35 @@
-.container {
-  width: 1024px;
-  display: flex;
-  justify-content: space-around;
+html {
+  font-family: Arial, Helvetica, sans-serif;
 }
 
+body {
+  background-image: url("./img/bg.jpg");
+  background-size: cover;
+  background-repeat: repeat;
+}
+.menu {
+  display: flex;
+  justify-content: space-around;
+  margin: 0 0 20px 0;
+  padding: 20px 0 0 0;
+}
+.container {
+  width: 1024px;
+  margin: 0 auto;
+}
+.catalog {
+  height: 700px;
+  overflow: auto;
+  background-color: #464646;
+  color: rgb(175, 147, 22);
+}
 .catalog__item {
+  display: none;
+  padding: 7px;
+  border: 1px solid #323232;
+  margin: 0 0 4px 0;
+}
+.catalog__photo__item {
   display: none;
 }
 .active {
@@ -13,6 +38,9 @@
 .catalog__user {
   list-style: none;
   margin-left: 20px;
+  padding: 10px;
+  border: 1px solid #323232;
+  margin: 0 0 2px 0;
 }
 .catalog__user:hover {
   cursor: pointer;
@@ -20,4 +48,23 @@
 
 .non_active {
   display: none;
+}
+.button {
+  background-image: url("./img/star.png");
+  width: 30px;
+  height: 30px;
+  background-size: cover;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  padding: 0;
+  filter: grayscale(100%);
+  cursor: pointer;
+  margin: 0 30px 0 0;
+}
+.albums__image {
+  display: flex;
+  align-items: center;
+  border: 1px solid #323232;
+  padding: 0 0 0 25px;
 }

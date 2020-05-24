@@ -33,7 +33,7 @@ const mapPhotos = (photo, albums) => {
 };
 
 const mapAlbums = (album, userItem) => {
-  const albums = document.createElement("ul"); // нужно зааппендить в albums каждую picture
+  const albums = document.createElement("li"); // нужно зааппендить в albums каждую picture
   albums.innerHTML = album.title;
   albums.classList.add("catalog__item");
   userItem.appendChild(albums);
@@ -47,9 +47,13 @@ const mapAlbums = (album, userItem) => {
     const photos = await getPhotos(album.id); // получаем фото с id album
     const photoBlock = document.createElement("ul");
     albums.appendChild(photoBlock);
+    photoBlock.classList.add("catalog__photo__item");
+
     photos.forEach((photo) => {
       const photoWrapper = document.createElement("li");
+      photoWrapper.classList.add("albums__image");
       const favouriteButton = document.createElement("button");
+      favouriteButton.classList.add("button");
       photoWrapper.dataset.photoId = photo.id;
       const image = document.createElement("img");
       photoBlock.appendChild(photoWrapper);
@@ -57,6 +61,7 @@ const mapAlbums = (album, userItem) => {
       photoWrapper.appendChild(image);
       image.src = photo.thumbnailUrl;
       image.title = photo.title;
+      photoBlock.classList.remove("catalog__photo__item");
     });
   });
 };
@@ -64,7 +69,7 @@ const mapAlbums = (album, userItem) => {
 const mapListUsers = async ({ id, name }) => {
   const userAlbums = await getAlbums(id); // здесь лежит массив с альбомами
   console.log(userAlbums);
-  const userItem = document.createElement("li");
+  const userItem = document.createElement("ul");
   const userName = document.createElement("p");
   userName.innerHTML = name;
   userItem.appendChild(userName);
