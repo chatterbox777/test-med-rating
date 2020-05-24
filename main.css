@@ -12,6 +12,10 @@ body {
   justify-content: space-around;
   margin: 0 0 20px 0;
   padding: 20px 0 0 0;
+  list-style: none;
+}
+.menu a {
+  text-decoration: none;
 }
 .container {
   width: 1024px;
@@ -44,6 +48,14 @@ body {
 }
 .catalog__user:hover {
   cursor: pointer;
+}
+.container__button {
+  padding: 10px;
+  cursor: pointer;
+  background-color: rgb(252, 219, 76);
+  border: none;
+  border-radius: 8px;
+  font-size: 18px;
 }
 
 .non_active {
