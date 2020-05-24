@@ -17,3 +17,7 @@
 .catalog__user:hover {
   cursor: pointer;
 }
+
+.non_active {
+  display: none;
+}

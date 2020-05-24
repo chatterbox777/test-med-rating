@@ -42,7 +42,8 @@ const mapAlbums = (album, userItem) => {
   };
 
   userItem.addEventListener("click", onSubscribeUsers);
-  albums.addEventListener("click", async () => {
+  albums.addEventListener("click", async (e) => {
+    e.stopPropagation();
     const photos = await getPhotos(album.id); // получаем фото с id album
     const photoBlock = document.createElement("ul");
     albums.appendChild(photoBlock);
